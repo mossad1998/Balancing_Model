@@ -110,8 +110,6 @@ void PIN_CONFIGURE(char port_name,int pin,char type[10])                        
     *PCTL_R[port_name-65]|= 3U << 4*pin;
   else if(strcmp(type,"PWM")==0)
   {
-    //GPIO_PORTE_PCTL_R &= ~0x00F00000; /* make PF3 PWM output pin */
-    //GPIO_PORTE_PCTL_R |=  0x00500000;
     *PCTL_R[port_name-65]|= 5U << 4*pin;
   }
 }

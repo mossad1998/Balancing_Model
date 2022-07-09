@@ -59,14 +59,14 @@ void CLK_PWM_DIVIDER(int Clk_Divider)                                   //To cho
 void PWM_START_STOP(int PWM_Module_Number,int Generator,char type[10])
 {
   
-  int index = Generator + 3*PWM_Module_Number;
+  int index = Generator + 4*PWM_Module_Number;
   if(strcmp(type , "Start")==0)
   {
     *PWM_CONTROL_R[index] = 1;
   }
-  else if (strcmp(type , "Disable")==0)
+  else if (strcmp(type , "Stop")==0)
   {                                  
-    *PWM_GENERATOR_R[index] = 0;
+    *PWM_CONTROL_R[index] = 0;
   }  
 
 }
@@ -113,8 +113,8 @@ void PULSE_WITDH_MODULATION(int PWM_Module_Number,int Sub_Module,char Generator,
 {
   int Load_Value = (Clk_Speed_MHZ*1000000)/(PWM_Speed_KHZ*1000);
   int Compare_Value = (100-Duty_Cycle)*(Load_Value/100);
-  //PWM1_3_GENB_R = 0x0000008C;
-  PWM_GENERATOR_VALUE(PWM_Module_Number,Sub_Module,Generator);
+  PWM1_3_GENB_R = 0x0000008C;
+  //PWM_GENERATOR_VALUE(PWM_Module_Number,Sub_Module,Generator);
   
   //PWM1_3_LOAD_R = 16000;
   PWM_MAXIMUM_LOAD_VALUE(PWM_Module_Number,Sub_Module,Load_Value);

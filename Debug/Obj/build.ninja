@@ -1,4 +1,4 @@
-#Generating source browse information for project Balancing_Model_V_1
+#Generating source browse information for project Balancing_Model_V_5
 
 
 #Abbreviations
@@ -20,16 +20,19 @@ rule browsedata
 
 
 #Build steps
+build Control.pbi : index Control.xcl
 build GPIO_Driver.pbi : index GPIO_Driver.xcl
-build I2C.pbi : index I2C.xcl
-build I2C_Driver.pbi : index I2C_Driver.xcl
+build GPTM_Driver.pbi : index GPTM_Driver.xcl
+build Interrupt_Driver.pbi : index Interrupt_Driver.xcl
+build Intializations.pbi : index Intializations.xcl
 build main.pbi : index main.xcl
 build PWM_Driver.pbi : index PWM_Driver.xcl
+build startup_ewarm.pbi : index startup_ewarm.xcl
 build Systick_Timer.pbi : index Systick_Timer.xcl
-build Balancing_Model_V_1_part0.pbi : link GPIO_Driver.pbi I2C.pbi
-build Balancing_Model_V_1_part1.pbi : link I2C_Driver.pbi main.pbi
-build Balancing_Model_V_1_part2.pbi : link PWM_Driver.pbi Systick_Timer.pbi
-build Balancing_Model_V_1.pbd : link Balancing_Model_V_1_part0.pbi Balancing_Model_V_1_part1.pbi Balancing_Model_V_1_part2.pbi
-build Balancing_Model_V_1.pbw : browsedata Balancing_Model_V_1.pbd
+build Balancing_Model_V_5_part0.pbi : link Control.pbi GPIO_Driver.pbi GPTM_Driver.pbi
+build Balancing_Model_V_5_part1.pbi : link Interrupt_Driver.pbi Intializations.pbi main.pbi
+build Balancing_Model_V_5_part2.pbi : link PWM_Driver.pbi startup_ewarm.pbi Systick_Timer.pbi
+build Balancing_Model_V_5.pbd : link Balancing_Model_V_5_part0.pbi Balancing_Model_V_5_part1.pbi Balancing_Model_V_5_part2.pbi
+build Balancing_Model_V_5.pbw : browsedata Balancing_Model_V_5.pbd
 
 
