@@ -1,7 +1,7 @@
 #include "Systick_Timer.h"
 
 
-void Systick_Delay_Seconds(float seconds )
+void Systick_Delay_Seconds(int seconds )
   {
      int ticks = seconds *2 ;
      int counter = 0 ;
