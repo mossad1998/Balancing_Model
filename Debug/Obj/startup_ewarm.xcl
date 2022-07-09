@@ -1,14 +1,14 @@
-"F:\Balancing_Model\Balancing_Model_V_1\startup_ewarm.c"
+"F:\Balancing_Model\Balancing_Model_V_2\startup_ewarm.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -MD
 -MF
-F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\startup_ewarm.pbi.dep
+F:\Balancing_Model\Balancing_Model_V_2\Debug\Obj\startup_ewarm.pbi.dep
 -o
 startup_ewarm.pbi
 -I
-F:\Balancing_Model\Balancing_Model_V_1
+F:\Balancing_Model\Balancing_Model_V_2
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\inc
 -I

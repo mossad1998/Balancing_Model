@@ -2,41 +2,70 @@
 #include "GPIO_Driver.h"
 #include "I2C_Driver.h"
 #include "Systick_Timer.h"
-#include "I2C.h"
 #include "PWM_Driver.h"
 
 
 
 void main()
 {  
-  CLK_Enable_PWM_Module(1);
-  
-  CLK_Enable('F');                                                          //Enable Clock for Port F
-  GPIO_PORT_LOCK('F');                                                      //Unlock for port F
-  
-  USE_PWM_CLK_DIVIDER("Disable");
-  
-  PIN_FUNCTION_SELECT('F',3,"Alternative");
-  //GPIO_PORTF_AFSEL_R = 8;
-  
-  PIN_CONFIGURE('F',3,"PWM");
-  //GPIO_PORTF_PCTL_R &= ~0x0000F000;
-  //GPIO_PORTF_PCTL_R |= 0x00005000;
+    //CLK_Enable_I2C_Module(1);
+    SYSCTL_RCGCI2C_R |= 0x02;
     
-  PIN_ANALOG_DIGITAL('F',3,"Digital");
-  
-  PWM_START_STOP(1,3,"Stop");
-  //PWM1_3_CTL_R = 0;
-  
-  PULSE_WITDH_MODULATION(1,3,'B','A',16,1,50);
-  
-  PWM_START_STOP(1,3,"Start");
-  //PWM1_3_CTL_R = 1;
-  
-  PWM_MODULE_ENABLE(1,7,"Enable");
- 
+    //CLK_Enable('A');
+    SYSCTL_RCGCGPIO_R |= 0x01;
+    
+    //PIN_FUNCTION_SELECT('A',6,"Alternative");
+    //PIN_FUNCTION_SELECT('A',7,"Alternative");
+    GPIO_PORTA_AFSEL_R |= 0xC0;
+    
+    //PIN_CONFIGURE('A',6,"I2C");
+    //PIN_CONFIGURE('A',7,"I2C");
+    GPIO_PORTA_PCTL_R &= ~0xFF000000;
+    GPIO_PORTA_PCTL_R |= 0x33000000;
+    
+    //PIN_ANALOG_DIGITAL('A',6,"Digital");
+    //PIN_ANALOG_DIGITAL('A',7,"Digital");
+    GPIO_PORTA_DEN_R |= 0xC0;
+    
+    //PIN_OPEN_DRAIN('A',7);
+    GPIO_PORTA_ODR_R |= 0x80;
+    
+    //I2C_Mode_Function(1,"Master");
+    I2C1_MCR_R = 0x10;
+    
+    //I2C_Speed_Kbps(100,1,16);
+    I2C1_MTPR_R = 7;
+    
+    //I2C_Scan_Address(1,7);
+              
+
+          //*I2C_MSA_R[timer_number] = (i <<1)+1 ;
+      
+          I2C1_MSA_R = 0x1E << 1;
+          I2C1_MDR_R = 0;
+          I2C1_MCS_R = 3;
+          
+          //I2C1_MCS_R = 3;
+          
+          //*I2C_MCS_R[timer_number] |= 1UL << 0;
+          //*I2C_MCS_R[timer_number] |= 1UL << 1;
+
+          while(I2C1_MCS_R & 1);
+          
+          int error = I2C1_MCS_R & 0xE; 
+
+          //printf("Iteration is :%d",i);
+          printf("Error0 is :%d",error);
+          printf("\n");
+         I2C1_MSA_R = (0x1E << 1) + 1;
+          while(I2C1_MCS_R & 1);
+          
+          error = I2C1_MCS_R & 0xE; 
+          printf("Error1 is :%d",error);
 
 
-      for(;;) { }
-  
+
+
+
 }
+

@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "F:\Balancing_Model\Balancing_Model_V_1\settings\Balancing_Model_V_1.Debug.general.xcl" --backend -f "F:\Balancing_Model\Balancing_Model_V_1\settings\Balancing_Model_V_1.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "F:\Balancing_Model\Balancing_Model_V_2\settings\Balancing_Model_V_1.Debug.general.xcl" --backend -f "F:\Balancing_Model\Balancing_Model_V_2\settings\Balancing_Model_V_1.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "F:\Balancing_Model\Balancing_Model_V_1\settings\Balancing_Model_V_1.Debug.general.xcl" "--debug_file=%~1" --backend -f "F:\Balancing_Model\Balancing_Model_V_1\settings\Balancing_Model_V_1.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "F:\Balancing_Model\Balancing_Model_V_2\settings\Balancing_Model_V_1.Debug.general.xcl" "--debug_file=%~1" --backend -f "F:\Balancing_Model\Balancing_Model_V_2\settings\Balancing_Model_V_1.Debug.driver.xcl" 
 
 @echo off 
 :end

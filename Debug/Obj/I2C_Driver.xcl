@@ -1,14 +1,14 @@
-"F:\Balancing_Model\Balancing_Model_V_1\I2C_Driver.c"
+"F:\Balancing_Model\Balancing_Model_V_2\I2C_Driver.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -MD
 -MF
-F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\I2C_Driver.pbi.dep
+F:\Balancing_Model\Balancing_Model_V_2\Debug\Obj\I2C_Driver.pbi.dep
 -o
 I2C_Driver.pbi
 -I
-F:\Balancing_Model\Balancing_Model_V_1
+F:\Balancing_Model\Balancing_Model_V_2
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\inc
 -I
