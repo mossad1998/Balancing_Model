@@ -59,14 +59,14 @@ void CLK_PWM_DIVIDER(int Clk_Divider)                                   //To cho
 void PWM_START_STOP(int PWM_Module_Number,int Generator,char type[10])
 {
   
-  int index = Generator + 3*PWM_Module_Number;
+  int index = Generator + 4*PWM_Module_Number;
   if(strcmp(type , "Start")==0)
   {
     *PWM_CONTROL_R[index] = 1;
   }
-  else if (strcmp(type , "Disable")==0)
+  else if (strcmp(type , "Stop")==0)
   {                                  
-    *PWM_GENERATOR_R[index] = 0;
+    *PWM_CONTROL_R[index] = 0;
   }  
 
 }

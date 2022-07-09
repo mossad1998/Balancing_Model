@@ -1,14 +1,14 @@
-"F:\Balancing_Model\Balancing_Model_V_2\I2C.c"
+"F:\Balancing_Model\Balancing_Model_V_3\I2C.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -MD
 -MF
-F:\Balancing_Model\Balancing_Model_V_2\Debug\Obj\I2C.pbi.dep
+F:\Balancing_Model\Balancing_Model_V_3\Debug\Obj\I2C.pbi.dep
 -o
 I2C.pbi
 -I
-F:\Balancing_Model\Balancing_Model_V_2
+F:\Balancing_Model\Balancing_Model_V_3
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\inc
 -I

@@ -1,4 +1,4 @@
-#Generating source browse information for project Balancing_Model_V_1
+#Generating source browse information for project Balancing_Model_V_3
 
 
 #Abbreviations
@@ -26,10 +26,10 @@ build I2C_Driver.pbi : index I2C_Driver.xcl
 build main.pbi : index main.xcl
 build PWM_Driver.pbi : index PWM_Driver.xcl
 build Systick_Timer.pbi : index Systick_Timer.xcl
-build Balancing_Model_V_1_part0.pbi : link GPIO_Driver.pbi I2C.pbi
-build Balancing_Model_V_1_part1.pbi : link I2C_Driver.pbi main.pbi
-build Balancing_Model_V_1_part2.pbi : link PWM_Driver.pbi Systick_Timer.pbi
-build Balancing_Model_V_1.pbd : link Balancing_Model_V_1_part0.pbi Balancing_Model_V_1_part1.pbi Balancing_Model_V_1_part2.pbi
-build Balancing_Model_V_1.pbw : browsedata Balancing_Model_V_1.pbd
+build Balancing_Model_V_3_part0.pbi : link GPIO_Driver.pbi I2C.pbi
+build Balancing_Model_V_3_part1.pbi : link I2C_Driver.pbi main.pbi
+build Balancing_Model_V_3_part2.pbi : link PWM_Driver.pbi Systick_Timer.pbi
+build Balancing_Model_V_3.pbd : link Balancing_Model_V_3_part0.pbi Balancing_Model_V_3_part1.pbi Balancing_Model_V_3_part2.pbi
+build Balancing_Model_V_3.pbw : browsedata Balancing_Model_V_3.pbd
 
 

@@ -20,14 +20,14 @@ volatile uint32_t* I2C_MCS_R[]={&I2C0_MCS_R,&I2C1_MCS_R,&I2C2_MCS_R,&I2C3_MCS_R}
                   
 
 
-void CLK_Enable_I2C_Module(int I2C_Module)                                                                 //To Eable CLK for specific port
+void CLK_Enable_I2C_Module(int timer_number)                                                                 //To Eable CLK for specific port
 {
-  SYSCTL_RCGCI2C_R |= CLK_I2C_Modules[I2C_Module];
+  SYSCTL_RCGCI2C_R |= CLK_I2C_Modules[timer_number];
     volatile uint32_t dummy ;                                                                   //To wait untill enabling the CLK
     dummy = SYSCTL_RCGCI2C_R ;                                             
 }
 
-void I2C_Mode_Function(int timer_number,char type[10])                                                             //To Unlock port F or D
+void I2C_Mode_Function(char type[10],int timer_number)                                                             //To Unlock port F or D
 {
     if(strcmp(type , "Master")==0)
   {
@@ -66,22 +66,21 @@ char I2C_Write(int timer_number,int number_of_byte,char *data,char memory_addres
     
   return 0;
 }
-void I2C_Scan_Address(int timer_number, int number_of_address_bit)
+int I2C_Scan_Address(int timer_number, int number_of_address_bit)
 {
     int error;
     float addresses_number = pow(2,number_of_address_bit)-1;
-  
-    for(int i=1; i <= addresses_number; i++)
+    for(int address = 1; address <= addresses_number;address++)
     {
-          *I2C_MSA_R[timer_number] = (i <<1)+1 ;
+          *I2C_MSA_R[timer_number] = (address <<1)+1 ;
           *I2C_MCS_R[timer_number] |= 1UL << 0;
           *I2C_MCS_R[timer_number] |= 1UL << 1;
           while(*I2C_MCS_R[timer_number] & 1);
-          
           error = *I2C_MCS_R[timer_number] & 0xE; 
           
-          printf("Iteration is :%d",i);
-          printf("Error is :%d",error);
+          if(error == 0)
+            return address;
+          
     }
 
 }

@@ -1,14 +1,14 @@
-"F:\Balancing_Model\Balancing_Model_V_2\Systick_Timer.c"
+"F:\Balancing_Model\Balancing_Model_V_3\Systick_Timer.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -MD
 -MF
-F:\Balancing_Model\Balancing_Model_V_2\Debug\Obj\Systick_Timer.pbi.dep
+F:\Balancing_Model\Balancing_Model_V_3\Debug\Obj\Systick_Timer.pbi.dep
 -o
 Systick_Timer.pbi
 -I
-F:\Balancing_Model\Balancing_Model_V_2
+F:\Balancing_Model\Balancing_Model_V_3
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\inc
 -I

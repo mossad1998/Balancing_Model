@@ -1,6 +1,6 @@
-I2C.pbi: F:\Balancing_Model\Balancing_Model_V_2\I2C.c \
-  F:\Balancing_Model\Balancing_Model_V_2/tm4c123gh6pm.h \
-  F:\Balancing_Model\Balancing_Model_V_2/I2C.h \
+I2C.pbi: F:\Balancing_Model\Balancing_Model_V_3\I2C.c \
+  F:\Balancing_Model\Balancing_Model_V_3/tm4c123gh6pm.h \
+  F:\Balancing_Model\Balancing_Model_V_3/I2C.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\stdint.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\ycheck.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\yvals.h \
