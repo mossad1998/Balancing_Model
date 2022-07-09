@@ -1,0 +1,264 @@
+###############################################################################
+#
+# IAR ELF Linker V8.50.1.245/W32 for ARM                  30/Sep/2020  19:06:45
+# Copyright 2007-2020 IAR Systems AB.
+#
+#    Output file  =
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\Exe\Balancing_Model_V_1.out
+#    Map file     =
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\List\Balancing_Model_V_1.map
+#    Command line =
+#        -f C:\Users\mmoss\AppData\Local\Temp\EW9B93.tmp
+#        (F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\GPIO_Driver.o
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\I2C.o
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\I2C_Driver.o
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\main.o
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\PWM_Driver.o
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj\Systick_Timer.o
+#        --no_out_extension -o
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\Exe\Balancing_Model_V_1.out
+#        --redirect _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb
+#        --map
+#        F:\Balancing_Model\Balancing_Model_V_1\Debug\List\Balancing_Model_V_1.map
+#        --config "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.4\arm\config\linker\TexasInstruments\TM4C123GH6.icf" --semihosting
+#        --entry __iar_program_start --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because some modules are built with
+size limitations (and not runtime checking), and --advanced_heap
+was not specified.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at address 0x0 { ro section .intvec };
+"P1":  place in [from 0x0 to 0x3'ffff] { ro };
+define block CSTACK with size = 4K, alignment = 8 { };
+define block HEAP with size = 8K, alignment = 8 { };
+"P2":  place in [from 0x2000'0000 to 0x2000'7fff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+  Section            Kind         Address    Size  Object
+  -------            ----         -------    ----  ------
+"A0":                                        0x40
+  .intvec            ro code          0x0    0x40  vector_table_M.o [4]
+                                   - 0x40    0x40
+
+"P1":                                       0x7a9
+  .text              ro code         0x40   0x294  GPIO_Driver.o [1]
+  .text              ro code        0x2d4    0x12  strcmp.o [4]
+  .text              ro code        0x2e6     0x2  vector_table_M.o [4]
+  .text              ro code        0x2e8   0x198  PWM_Driver.o [1]
+  .text              ro code        0x480    0x8c  main.o [1]
+  .text              ro code        0x50c    0x78  lz77_init_single.o [4]
+  .text              ro code        0x584    0x2c  iarttio.o [5]
+  .text              ro code        0x5b0     0x8  XShttio.o [2]
+  .text              ro code        0x5b8    0x28  data_init.o [4]
+  .text              ro code        0x5e0    0x22  fpinit_M.o [3]
+  .iar.init_table    const          0x604    0x10  - Linker created -
+  .text              ro code        0x614    0x1e  cmain.o [4]
+  .text              ro code        0x632     0x4  low_level_init.o [2]
+  .text              ro code        0x636     0x4  exit.o [2]
+  .text              ro code        0x63c     0xa  cexit.o [4]
+  .text              ro code        0x648    0x14  exit.o [5]
+  .rodata            const          0x65c     0xc  GPIO_Driver.o [1]
+  .rodata            const          0x668     0xc  GPIO_Driver.o [1]
+  .rodata            const          0x674     0xc  main.o [1]
+  .text              ro code        0x680     0xc  cstartup_M.o [4]
+  .rodata            const          0x68c     0x8  GPIO_Driver.o [1]
+  .rodata            const          0x694     0x8  GPIO_Driver.o [1]
+  .rodata            const          0x69c     0x8  GPIO_Driver.o [1]
+  .rodata            const          0x6a4     0x8  main.o [1]
+  .rodata            const          0x6ac     0x8  main.o [1]
+  .rodata            const          0x6b4     0x8  main.o [1]
+  .rodata            const          0x6bc     0x8  main.o [1]
+  .rodata            const          0x6c4     0x8  main.o [1]
+  .rodata            const          0x6cc     0x8  PWM_Driver.o [1]
+  .rodata            const          0x6d4     0x8  PWM_Driver.o [1]
+  .rodata            const          0x6dc     0x8  PWM_Driver.o [1]
+  .rodata            const          0x6e4     0x0  lz77_init_single.o [4]
+  Initializer bytes  const          0x6e4   0x105  <for P2-1>
+                                  - 0x7e9   0x7a9
+
+"P2", part 1 of 2:                          0x158
+  P2-1                        0x2000'0000   0x158  <Init block>
+    .data            inited   0x2000'0000    0x18  GPIO_Driver.o [1]
+    .data            inited   0x2000'0018    0x18  GPIO_Driver.o [1]
+    .data            inited   0x2000'0030    0x18  GPIO_Driver.o [1]
+    .data            inited   0x2000'0048    0x18  GPIO_Driver.o [1]
+    .data            inited   0x2000'0060    0x18  GPIO_Driver.o [1]
+    .data            inited   0x2000'0078    0x10  PWM_Driver.o [1]
+    .data            inited   0x2000'0088    0x20  PWM_Driver.o [1]
+    .data            inited   0x2000'00a8    0x20  PWM_Driver.o [1]
+    .data            inited   0x2000'00c8    0x40  PWM_Driver.o [1]
+    .data            inited   0x2000'0108    0x40  PWM_Driver.o [1]
+    .data            inited   0x2000'0148     0x8  PWM_Driver.o [1]
+    .data            inited   0x2000'0150     0x8  XShttio.o [2]
+                            - 0x2000'0158   0x158
+
+"P2", part 2 of 2:                         0x1000
+  CSTACK                      0x2000'0158  0x1000  <Block>
+    CSTACK           uninit   0x2000'0158  0x1000  <Block tail>
+                            - 0x2000'1158  0x1000
+
+Unused ranges:
+
+         From           To      Size
+         ----           --      ----
+        0x7e9     0x3'ffff  0x3'f817
+  0x2000'1158  0x2000'7fff    0x6ea8
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Copy/lz77 (__iar_lz77_init_single3)
+    1 source range, total size 0x105 (75% of destination):
+                0x6e4  0x105
+    1 destination range, total size 0x158:
+          0x2000'0000  0x158
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module              ro code  ro data  rw data
+    ------              -------  -------  -------
+command line/config:
+    ---------------------------------------------
+    Total:
+
+F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj: [1]
+    GPIO_Driver.o           660      139      120
+    PWM_Driver.o            408      187      216
+    main.o                  140       52
+    ---------------------------------------------
+    Total:                1'208      378      336
+
+dl7M_tln.a: [2]
+    XShttio.o                 8        7        8
+    exit.o                    4
+    low_level_init.o          4
+    ---------------------------------------------
+    Total:                   16        7        8
+
+m7M_tls.a: [3]
+    fpinit_M.o               34
+    ---------------------------------------------
+    Total:                   34
+
+rt7M_tl.a: [4]
+    cexit.o                  10
+    cmain.o                  30
+    cstartup_M.o             12
+    data_init.o              40
+    lz77_init_single.o      120
+    strcmp.o                 18
+    vector_table_M.o         66
+    ---------------------------------------------
+    Total:                  296
+
+shb_l.a: [5]
+    exit.o                   20
+    iarttio.o                44
+    ---------------------------------------------
+    Total:                   64
+
+    Gaps                      4        2
+    Linker created                    16    4'096
+-------------------------------------------------
+    Grand Total:          1'622      403    4'440
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address  Size  Type      Object
+-----                       -------  ----  ----      ------
+.iar.init_table$$Base         0x604         --   Gb  - Linker created -
+.iar.init_table$$Limit        0x614         --   Gb  - Linker created -
+?main                         0x615        Code  Gb  cmain.o [4]
+AFSEL_R                 0x2000'0048  0x18  Data  Gb  GPIO_Driver.o [1]
+AMSEL_R                 0x2000'0018  0x18  Data  Gb  GPIO_Driver.o [1]
+CLK_Enable                     0x41  0x24  Code  Gb  GPIO_Driver.o [1]
+CLK_Enable_PWM_Module         0x2e9  0x18  Code  Gb  PWM_Driver.o [1]
+CLK_PORTS               0x2000'0000  0x18  Data  Gb  GPIO_Driver.o [1]
+CLK_PWM_Modules         0x2000'0078  0x10  Data  Gb  PWM_Driver.o [1]
+CSTACK$$Base            0x2000'0158         --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'1158         --   Gb  - Linker created -
+DEN_R                   0x2000'0030  0x18  Data  Gb  GPIO_Driver.o [1]
+GPIO_PORT_LOCK                 0x65  0x36  Code  Gb  GPIO_Driver.o [1]
+PCTL_R                  0x2000'0060  0x18  Data  Gb  GPIO_Driver.o [1]
+PIN_ANALOG_DIGITAL             0x9b  0xca  Code  Gb  GPIO_Driver.o [1]
+PIN_CONFIGURE                 0x1db  0xb0  Code  Gb  GPIO_Driver.o [1]
+PIN_FUNCTION_SELECT           0x165  0x76  Code  Gb  GPIO_Driver.o [1]
+PULSE_WITDH_MODULATION        0x3ff  0x50  Code  Gb  PWM_Driver.o [1]
+PWM_COMPARE_R           0x2000'0108  0x40  Data  Gb  PWM_Driver.o [1]
+PWM_COMPARE_VALUE             0x37f  0x16  Code  Gb  PWM_Driver.o [1]
+PWM_CONTROL_R           0x2000'0088  0x20  Data  Gb  PWM_Driver.o [1]
+PWM_ENABLE_R            0x2000'0148   0x8  Data  Gb  PWM_Driver.o [1]
+PWM_GENERATOR_R         0x2000'00c8  0x40  Data  Gb  PWM_Driver.o [1]
+PWM_GENERATOR_VALUE           0x395  0x18  Code  Gb  PWM_Driver.o [1]
+PWM_LOAD_R              0x2000'00a8  0x20  Data  Gb  PWM_Driver.o [1]
+PWM_MAXIMUM_LOAD_VALUE        0x371   0xe  Code  Gb  PWM_Driver.o [1]
+PWM_MODULE_ENABLE             0x3ad  0x52  Code  Gb  PWM_Driver.o [1]
+PWM_START_STOP                0x335  0x3c  Code  Gb  PWM_Driver.o [1]
+Region$$Table$$Base           0x604         --   Gb  - Linker created -
+Region$$Table$$Limit          0x614         --   Gb  - Linker created -
+USE_PWM_CLK_DIVIDER           0x301  0x34  Code  Gb  PWM_Driver.o [1]
+__cmain                       0x615        Code  Gb  cmain.o [4]
+__exit                        0x649  0x14  Code  Gb  exit.o [5]
+__iar_close_ttio              0x585  0x2c  Code  Wk  iarttio.o [5]
+__iar_data_init3              0x5b9  0x28  Code  Gb  data_init.o [4]
+__iar_init_vfp                0x5e1        Code  Gb  fpinit_M.o [3]
+__iar_lookup_ttioh            0x5b1   0x8  Code  Gb  XShttio.o [2]
+__iar_lz77_init_single3
+                              0x50d  0x78  Code  Gb  lz77_init_single.o [4]
+__iar_program_start           0x681        Code  Gb  cstartup_M.o [4]
+__iar_ttio_handles      0x2000'0150   0x8  Data  Lc  XShttio.o [2]
+__low_level_init              0x633   0x4  Code  Gb  low_level_init.o [2]
+__vector_table                  0x0        Data  Gb  vector_table_M.o [4]
+_call_main                    0x621        Code  Gb  cmain.o [4]
+_exit                         0x63d        Code  Gb  cexit.o [4]
+_main                         0x62f        Code  Gb  cmain.o [4]
+exit                          0x637   0x4  Code  Gb  exit.o [2]
+main                          0x481  0x8c  Code  Gb  main.o [1]
+strcmp                        0x2d5        Code  Gb  strcmp.o [4]
+
+
+[1] = F:\Balancing_Model\Balancing_Model_V_1\Debug\Obj
+[2] = dl7M_tln.a
+[3] = m7M_tls.a
+[4] = rt7M_tl.a
+[5] = shb_l.a
+
+  1'622 bytes of readonly  code memory
+    403 bytes of readonly  data memory
+  4'440 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

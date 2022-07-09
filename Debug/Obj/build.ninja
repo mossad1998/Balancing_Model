@@ -1,0 +1,35 @@
+#Generating source browse information for project Balancing_Model_V_1
+
+
+#Abbreviations
+cc = C$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.4\common\bin\SourceIndexer.exe
+ll = C$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.4\common\bin\PbdLink.exe
+bd = C$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.4\common\bin\makeBrowseData.exe
+
+
+
+#Rules
+rule index
+  depfile = $out.dep
+  command = $cc -out=$out -f $in
+rule link
+  command = $ll -M $out $in
+rule browsedata
+  command = $bd $in -output  $out
+
+
+
+#Build steps
+build GPIO_Driver.pbi : index GPIO_Driver.xcl
+build I2C.pbi : index I2C.xcl
+build I2C_Driver.pbi : index I2C_Driver.xcl
+build main.pbi : index main.xcl
+build PWM_Driver.pbi : index PWM_Driver.xcl
+build Systick_Timer.pbi : index Systick_Timer.xcl
+build Balancing_Model_V_1_part0.pbi : link GPIO_Driver.pbi I2C.pbi
+build Balancing_Model_V_1_part1.pbi : link I2C_Driver.pbi main.pbi
+build Balancing_Model_V_1_part2.pbi : link PWM_Driver.pbi Systick_Timer.pbi
+build Balancing_Model_V_1.pbd : link Balancing_Model_V_1_part0.pbi Balancing_Model_V_1_part1.pbi Balancing_Model_V_1_part2.pbi
+build Balancing_Model_V_1.pbw : browsedata Balancing_Model_V_1.pbd
+
+

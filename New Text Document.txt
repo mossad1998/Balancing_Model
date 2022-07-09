@@ -1,0 +1,149 @@
+#include "tm4c123gh6pm.h"
+#include "GPIO_Driver.h"
+#include "I2C_Driver.h"
+#include "Systick_Timer.h"
+
+void main()
+{  
+      char timeDateReadBack[7];
+      
+      CLK_Enable('A');
+      CLK_Enable_I2C_Module(1);
+      
+      PIN_FUNCTION_SELECT('A',6,"Alternative");
+      PIN_FUNCTION_SELECT('A',7,"Alternative");
+      
+      PIN_CONFIGURE('A',6,"I2C");
+      PIN_CONFIGURE('A',7,"I2C");
+      
+      PIN_ANALOG_DIGITAL('A',6,"Digital");
+      PIN_ANALOG_DIGITAL('A',7,"Digital");
+
+      PIN_OPEN_DRAIN('A', 7);
+      
+      I2C_Mode_Function("Master",1);
+      I2C_Speed_Kbps(100,1,16);
+      I2C1_read(30,3,4,timeDateReadBack);
+              printf("Adress is : %c", timeDateReadBack);
+
+
+}
+
+
+static int I2C_wait_till_done(void)
+{
+    while(I2C1_MCS_R & 1); /* wait until I2C master is not busy */
+    return I2C1_MCS_R & 0xE; /* return I2C error code */
+}
+
+
+
+
+#include "tm4c123gh6pm.h"
+#include "GPIO_Driver.h"
+#include "I2C_Driver.h"
+#include "Systick_Timer.h"
+/*
+fmax = 400 kHz
+I2C1SCL PA6
+I2C1SDA PA7 */
+
+#define SLAVE_ADDR 0x11 /* 0110 1000 */
+
+
+/* initialize I2C1 as master and the port pins */
+void I2C1_init(void)
+{
+    CLK_Enable('A'); 
+    CLK_Enable_I2C_Module(1);
+
+    PIN_FUNCTION_SELECT('A',6,"Alternative");
+      PIN_FUNCTION_SELECT('A',7,"Alternative");
+      
+     PIN_CONFIGURE('A',6,"I2C");
+     PIN_CONFIGURE('A',7,"I2C");
+    
+      PIN_ANALOG_DIGITAL('A',6,"Digital");
+      PIN_ANALOG_DIGITAL('A',7,"Digital");
+      
+PIN_OPEN_DRAIN('A', 7);
+
+
+//GPIO_PORTA_ODR_R |= 0x80; /* PORTA 7 as open drain */
+      I2C_Mode_Function("Master",1);
+     // I2C1_MCR_R = 0x10; /* master mode */
+   // I2C1_MTPR_R = 7; /* 100 kHz @ 16 MHz */
+          I2C_Speed_Kbps(100,1,16);
+}
+/* This function is called by the startup assembly */
+/* code to perform system specific initialization tasks. */
+
+/* Wait until I2C master is not busy and return error code */
+/* If there is no error, return 0 */
+static int I2C_wait_till_done(void)
+{
+    while(I2C1_MCS_R & 1); /* wait until I2C master is not busy */
+    return I2C1_MCS_R & 0xE;; /* return I2C error code */
+    }
+    /* Read memory */
+    /* read: S-(saddr+w)-ACK-maddr-ACK-R-(saddr+r)-ACK-data-ACK-data-ACK-...-data-NACK-P */
+
+char I2C1_read(int slaveAddr, char memAddr, int byteCount, char* data)
+    {
+    char error;
+    if (byteCount <= 0)
+    return -1; /* no read was performed */
+    /* send slave address and starting address */
+    I2C1_MSA_R = slaveAddr << 1;
+    I2C1_MDR_R = memAddr;
+    I2C1_MCS_R = 3; /* S-(saddr+w)-ACK-maddr-ACK */
+    error = I2C_wait_till_done();
+    if (error)
+    {
+       printf("Adress is : %d", error);
+    return error;
+    }
+    /* to change bus from write to read, send restart with slave addr */
+    I2C1_MSA_R = (slaveAddr << 1) + 1; /* restart: -R-(saddr+r)-ACK */
+    if (byteCount == 1) /* if last byte, don't ack */
+    I2C1_MCS_R = 7; /* -data-NACK-P */
+    else /* else ack */
+    I2C1_MCS_R = 0xB; /* -data-ACK- */
+    error = I2C_wait_till_done();
+    if (error) return error;
+    *data++ = I2C1_MDR_R; /* store the data received */
+    if (--byteCount == 0) /* if single byte read, done */
+    {
+    while(I2C1_MCS_R & 0x40); /* wait until bus is not busy */
+    return 0; /* no error */
+    }
+    /* read the rest of the bytes */
+    while (byteCount > 1)
+    {
+    I2C1_MCS_R = 9; /* -data-ACK- */
+    error = I2C_wait_till_done();
+    if (error) return error;
+    byteCount--;
+    *data++ = I2C1_MDR_R; /* store data received */
+    }
+    I2C1_MCS_R = 5; /* -data-NACK-P */
+    error = I2C_wait_till_done();
+    *data = I2C1_MDR_R; /* store data received */
+    while(I2C1_MCS_R & 0x40); /* wait until bus is not busy */
+    return 0; /* no error */
+    }
+
+
+int main(void)
+{
+char timeDateReadBack[7];
+I2C1_init();
+//int val = I2C_Scan_Address(1,7);
+   //  printf("Adresdsfsdfs is : %d", val);
+
+for (;;)
+{
+I2C1_read(SLAVE_ADDR, 0, 7, timeDateReadBack);
+}
+   //  printf("Adress is : %c", timeDateReadBack);
+}
